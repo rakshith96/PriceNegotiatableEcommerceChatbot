@@ -1,0 +1,259 @@
+<html>
+<head>
+	<title>API Example</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+	
+	<script type="text/javascript">
+		var price = {"Laptops": "40000", "Television": "20000", "Camera": "3000", "Mobile": "13000"};
+		var disc = {"Laptops": "15", "Television": "35", "Camera": "30", "Mobile": "20"};
+		var accessToken = "b191dc4e1ece49d3abad5369c94df833";
+		var baseUrl = "https://api.api.ai/v1/";
+
+		$(document).ready(function() {
+			$("#input").keypress(function(event) {
+				if (event.which == 13) {
+					event.preventDefault();
+					send();
+				}
+			});
+		//	$("#rec").click(function(event) {
+		//		switchRecognition();
+		//	});
+		});
+		  xhr = new XMLHttpRequest();
+		  function startRecording() {
+
+		    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+		      var recognition = new webkitSpeechRecognition();
+
+		      recognition.continuous = false;
+		      recognition.interimResults = false;
+
+		      recognition.lang = "en-US";
+		      recognition.start();
+
+		      recognition.onresult = function(e) {
+			document.getElementById('transcript').value
+				                 = e.results[0][0].transcript;
+		      recognition.stop();
+		      //document.getElementById('SpeechToText').submit();
+		      xhr.onreadystatechange = go;
+		      xhr.open("GET","Speech.php?voice="+document.getElementById('transcript').value,false);
+		      xhr.send();    
+		      
+		      };
+		      
+		      recognition.onerror = function(e) {
+			recognition.stop();
+		      }
+
+		    }
+		  }
+		  function go()
+		  {}
+		function send() {
+			var text = $("#input").val();
+			user = document.createElement("div");
+			user.innerHTML = text;
+			//user.style.color = "white";
+			//user.style.backgroundColor = "blue";
+			user.className = "bubble me";
+			user.style.width = "500px";
+			document.getElementById("response").appendChild(user);
+			br = document.createElement("br");
+			document.getElementById("response").appendChild(br);
+			document.getElementById("response").appendChild(br);
+			document.getElementById("response").appendChild(br);
+			$.ajax({
+				type: "POST",
+				url: baseUrl + "query?v=20150910",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				headers: {
+					"Authorization": "Bearer " + accessToken
+				},
+				data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
+
+				success: function(data) {
+					setResponse(data);
+				},
+				error: function() {
+					setResponse("Internal Server Error");
+				}
+			});
+			setResponse("Loading...");
+		}
+
+		function setResponse(val) {
+			//val1 ='['+val+']';
+			//{"source":"agent","resolvedQuery":"Camera","action":"","actionIncomplete":false,"parameters":{"Items":"Camera"},"contexts":[],"metadata":{"intentId":"7ce63ade-3929-42ca-90b7-a28400f68ad3","webhookUsed":"false","webhookForSlotFillingUsed":"false","intentName":"isAvailable"},"fulfillment":{"speech":"","messages":[{"type":0,"speech":""}]},"score":1}
+			arr = val["result"];
+			//alert(JSON.stringify(arr));
+			par = arr["parameters"];
+			l = Object.keys(par).length;
+			bot = document.createElement("div");
+			bot.className = "bubble you";
+			//bot.style.backgroundColor = "grey";
+			//bot.style.color = "white";
+			bot.style.width = "500px";
+			//alert(JSON.stringify(par));
+			if(l > 0){
+				item = par["Items"];
+				//alert(item);
+				met = arr["metadata"];
+				intent = met["intentName"];
+				//ful = arr["fulfillment"];
+				//sp = ful["speech"];
+				
+				if(intent == "isAvailable"){
+					if(item)
+					{
+						//$("#response").text("Available");
+						t = "Available";
+						bot.innerHTML = t;
+						document.getElementById("response").appendChild(bot);
+						br = document.createElement("br");
+						document.getElementById("response").appendChild(br);
+					}
+					else
+					{
+						t = "Not Available";
+						bot.innerHTML = t;
+						document.getElementById("response").appendChild(bot);
+						br = document.createElement("br");
+						document.getElementById("response").appendChild(br);
+						//$("#response").text("Not Available");}
+					}}
+				else if(intent == "Price")
+				{
+						bot.innerHTML = price[item];
+						document.getElementById("response").appendChild(bot);
+						br = document.createElement("br");
+						document.getElementById("response").appendChild(br);
+
+						//$("#response").text(price[item]);
+				}
+				else if(intent == "Discount")
+						bot.innerHTML = disc[item]+"%";
+						document.getElementById("response").appendChild(bot);
+						br = document.createElement("br");
+						document.getElementById("response").appendChild(br);
+
+			}
+			if(l <= 0){		
+			//alert(JSON.stringify(arr));
+				ful = arr["fulfillment"];
+				sp = ful["speech"];
+				//alert(sp);
+				bot.innerHTML = sp;
+				document.getElementById("response").appendChild(bot);
+				br = document.createElement("br");
+				document.getElementById("response").appendChild(br);
+				//$("#response").text(sp);
+			}
+			document.getElementById("response").appendChild(br);
+			document.getElementById("response").appendChild(br);
+			document.getElementById("response").appendChild(br);
+		}
+
+	</script>
+	<style type="text/css">
+		body { width: 500px; margin: 0 auto; text-align: center; margin-top: 20px; }
+		div {  position: absolute; }
+		input { width: 400px; }
+		button { width: 50px; }
+		textarea { width: 100%; }
+		
+		.bubble
+		{
+		    
+		    border-radius: 5px;
+			display: block;
+		    
+		    padding: 10px 18px;
+		    position: relative;
+		    vertical-align: top;
+			white-space: nowrap;
+			clear: both;
+		}
+
+		.bubble::before
+		{
+		    
+		    content: "\00a0";
+		    display: block;
+		    height: 16px;
+		    position: absolute;
+		    top: 11px;
+		    transform:             rotate( 29deg ) skew( -35deg );
+			-moz-transform:    rotate( 29deg ) skew( -35deg );
+			-ms-transform:     rotate( 29deg ) skew( -35deg );
+			-o-transform:      rotate( 29deg ) skew( -35deg );
+			-webkit-transform: rotate( 29deg ) skew( -35deg );
+		    width:  20px;
+		}
+
+		.me
+		{
+			background-color: #6495ED;
+			box-shadow: 0 0 6px #6495ED;
+			float: left;
+		    margin: 5px 45px 5px 20px;
+		}
+
+		.me::before
+		{
+		    background-color: #6495ED;
+		    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+		    left: -9px;          
+		}
+
+		.you
+		{
+			background-color: #F2F2F2;
+			box-shadow: 0 0 6px #F2F2F2;
+			float: right;
+		    margin: 5px 20px 5px 45px;       
+		}
+
+		.you::before
+		{
+	       	    background-color: #F2F2F2;
+		    box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
+		    right: -9px;
+		}
+		
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+	<div class="col-md-5"></div>
+	<div class="col-md-7" ><h3>Ask me any question</h3></div>
+	
+	</div>
+	<br />
+	<br />
+	<br />
+	<div class="container">
+	<div class="col-md-5"></div>
+	<div class="col-md-7" id="response" style="background-color: black; border: 3px solid black; height: 500px; overflow-y: scroll; overflow: scroll/auto;"></div>
+	
+	</div>
+	<br /> 	
+	<div class="container" style="top:555px;left:662px;">
+	<div class="col-md-5"></div>
+	<div class="col-md-5" ><input class="form-control form-input form-style-base" type="text" id="input" style="width:600px" placeholder="Type message here"/></div>
+	<div class="col-md-1"><img onclick="startRecording()" src="images/Microphone.jpeg" /></div>
+	<div class="col-md-1"><button class="btn btn-primary" class="btn btn-primary" onclick="send()" style="width:95px">Send</button class="btn btn-primary"></div>
+	
+	</div>
+</body>
+</html>
