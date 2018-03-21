@@ -2,62 +2,66 @@ package pricenegotiatableecommercechatbot.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class Product implements Serializable {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1441773723984769349L;
+	private static final long serialVersionUID = -1061590504848395220L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productId;
 	
-	private String productName;
+	private String name;
 	
-	@ManyToOne(targetEntity = CategoryCatalogue.class)
-	@JoinColumn(name="categoryId", nullable = false)
-	private CategoryCatalogue categoryCatalogue;
+	@PrimaryKeyJoinColumn
+	@ManyToOne(cascade = CascadeType.ALL, optional = false)
+	private ProductCatalogue productCatalogue;
 
 	public Integer getProductId() {
 		return productId;
-	}
-
-	public Product() {
-		super();
-	}
-
-	public Product(Integer productId, String productName, CategoryCatalogue categoryCatalogue) {
-		super();
-		this.productId = productId;
-		this.productName = productName;
-		this.categoryCatalogue = categoryCatalogue;
 	}
 
 	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getName() {
+		return name;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public CategoryCatalogue getCategoryCatalogue() {
-		return categoryCatalogue;
+	public ProductCatalogue getProductCatalogue() {
+		return productCatalogue;
 	}
 
-	public void setCategoryCatalogue(CategoryCatalogue categoryCatalogue) {
-		this.categoryCatalogue = categoryCatalogue;
+	public void setProductCatalogue(ProductCatalogue productCatalogue) {
+		this.productCatalogue = productCatalogue;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Product(Integer productId, String name, ProductCatalogue productCatalogue) {
+		super();
+		this.productId = productId;
+		this.name = name;
+		this.productCatalogue = productCatalogue;
+	}
+
+	public Product() {
+		super();
+	}
+	
 }
