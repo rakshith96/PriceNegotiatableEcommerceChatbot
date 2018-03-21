@@ -1,0 +1,13 @@
+<?php
+ if(isset($_POST['submit']))
+ {
+   $output=shell_exec('cd ..');
+   $o = shell_exec('cd BotFramework-Emulator');
+   $i = shell_exec('npm run start');
+   //echo $output;
+ }
+?>
+
+<form action="" method="post">
+<input type="submit" name="submit" value="Call my Shell Script">
+</form>
