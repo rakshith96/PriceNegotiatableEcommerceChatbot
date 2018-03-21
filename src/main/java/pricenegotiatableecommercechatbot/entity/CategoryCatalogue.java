@@ -22,7 +22,6 @@ public class CategoryCatalogue implements Serializable {
 	
 	private String categoryName;
 
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryCatalogue")
 	private List<ProductCatalogue> prodyctCatalogue = new ArrayList<ProductCatalogue>();
 	
