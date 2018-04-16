@@ -1,4 +1,4 @@
-package pricenegotiatableecommercechatbot.entity;
+	package pricenegotiatableecommercechatbot.entity;
 
 import java.io.Serializable;
 
@@ -18,6 +18,8 @@ public class Product implements Serializable {
 
 	@Id
 	private Integer productId;
+	
+	private Integer price;
 	
 	private String name;
 	
@@ -53,11 +55,20 @@ public class Product implements Serializable {
 		return serialVersionUID;
 	}
 
-	public Product(Integer productId, String name, ProductCatalogue productCatalogue) {
+	public Product(Integer productId, String name, ProductCatalogue productCatalogue, Integer price) {
 		super();
 		this.productId = productId;
 		this.name = name;
 		this.productCatalogue = productCatalogue;
+		this.price = price;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 
 	public Product() {
