@@ -35,4 +35,9 @@ public class OrderHistoryController {
 		return orderHistoryService.findByOrderId(orderId);
 	}
 	
+	@RequestMapping(value="/getLatestOrderOfUser",  method= RequestMethod.GET)
+	public OrderHistory findLatestOrder(@RequestParam("userId") Integer userId) {
+		return orderHistoryService.findLatestOrder(userId);
+	}
+	
 }

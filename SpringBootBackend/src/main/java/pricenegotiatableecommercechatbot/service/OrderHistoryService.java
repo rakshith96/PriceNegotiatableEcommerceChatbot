@@ -25,4 +25,12 @@ public class OrderHistoryService {
 	public List<OrderHistory> findAllOrderHistory(){
 		return orderHistoryRepository.findAll();
 	}
+	
+	public List<OrderHistory> findLatestFiveUserTransaction(Integer userId){
+		return orderHistoryRepository.findOrderedUserHistory(userId);
+	}
+	
+	public OrderHistory findLatestOrder(Integer userId){
+		return orderHistoryRepository.findOrderedUserHistory(userId).get(0);
+	}
 }
