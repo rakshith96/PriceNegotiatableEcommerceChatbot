@@ -1,0 +1,327 @@
+{
+	"info": {
+		"name": "Project",
+		"_postman_id": "08f72d1b-134f-9067-4f67-0374a05ac501",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/registerNewUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"contactNumber\": null,\n    \"email\": \"rrrakshi10@gmail.com\",\n    \"userName\": \"Kruthi\",\n    \"interests\": null,\n    \"name\": \"Kruthi\",\n    \"password\": \"kruthi\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/registerNewUser",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"registerNewUser"
+					]
+				},
+				"description": "Post Request to add user"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/viewAllAvailableCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8080/viewAllAvailableCategory",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viewAllAvailableCategory"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/addNewCategory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"categoryName\":\"Phone\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/addNewCategory",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addNewCategory"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/addNewProductCatalogue",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"productName\":\"Monitor 20\",\n\t\"categoryCatalogue\":{\n\t\t\"categoryId\":3\n\t}\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/addNewProductCatalogue",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addNewProductCatalogue"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/addNewProduct",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Dell 212\",\n\t\"productId\":212,\n\t\"price\":\"200\",\n\t\"productCatalogue\":{\n\t\t\"productId\":20,\n\t\t\"categoryCatalogue\":{\n\t\t\t\"categoryId\":3\n\t\t}\n\t}\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/addNewProduct",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addNewProduct"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/authenticateUser?username=Rakshith VR",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8080/authenticateUser?username=Rakshith VR",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"authenticateUser"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Rakshith VR",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viewAllAvailableProductsCatalogue",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/viewAllAvailableProductsCatalogue",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viewAllAvailableProductsCatalogue"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/viewProductCatalogueByCategoryName?categoryName=Electronics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8080/viewProductCatalogueByCategoryName?categoryName=Electronics",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viewProductCatalogueByCategoryName"
+					],
+					"query": [
+						{
+							"key": "categoryName",
+							"value": "Electronics",
+							"equals": true
+						}
+					]
+				},
+				"description": "View all available products under a category"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/viewAllAvailableProductsUnderProductCatalogue?productName=1dk",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8080/viewAllAvailableProductsUnderProductCatalogue?productName=1dk",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viewAllAvailableProductsUnderProductCatalogue"
+					],
+					"query": [
+						{
+							"key": "productName",
+							"value": "1dk",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/addNewProduct",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"productId\": 69,\n        \"price\": \"200\",\n        \"name\": \"HP Elite Book\",\n        \"productCatalogue\": {\n            \"productId\": 2,\n            \"productName\": \"Laptop\",\n            \"categoryCatalogue\": {\n                \"categoryId\": 1,\n                \"categoryName\": \"Electronics\"\n            }\n        }\n    }"
+				},
+				"url": {
+					"raw": "localhost:8080/addNewProduct",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addNewProduct"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/viewAllAvailableProductsUnderProductCatalogue?productName=Laptop",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8080/viewAllAvailableProductsUnderProductCatalogue?productName=Laptop",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viewAllAvailableProductsUnderProductCatalogue"
+					],
+					"query": [
+						{
+							"key": "productName",
+							"value": "Laptop",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/addSearchHistroy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"productId\":\"69\",\n\t\"userId\":\"1\",\n\t\"time\":1\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/addSearchHistroy",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addSearchHistroy"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

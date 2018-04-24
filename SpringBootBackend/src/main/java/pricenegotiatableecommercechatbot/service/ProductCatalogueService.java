@@ -21,4 +21,9 @@ public class ProductCatalogueService {
 	public List<ProductCatalogue> viewAllAvailableProducts() {
 		return productCatalogueRepository.findAll();
 	}
+
+	public List<ProductCatalogue> viewProductCatalogueByCategoryName(String categoryName) {
+		// TODO Auto-generated method stub
+		return productCatalogueRepository.findByCategoryName(categoryName);
+	}
 }

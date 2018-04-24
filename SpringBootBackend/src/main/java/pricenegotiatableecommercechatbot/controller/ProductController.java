@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pricenegotiatableecommercechatbot.entity.Product;
@@ -26,5 +27,11 @@ public class ProductController {
 	@RequestMapping(value="/viewAllAvailableProducts",  method= RequestMethod.GET)
 	public List<Product> viewAllAvailableProducts() {
 		return productService.viewAllAvailableProducts();
+	}
+	
+	@RequestMapping(value="/viewAllAvailableProductsUnderProductCatalogue",  method= RequestMethod.GET)
+	public List<Product> viewAllAvailableProductsUnderProductCatalogue(@RequestParam("productName") String productName) {
+//		System.out.println(categoryName);
+		return productService.viewAllAvailableProductsUnderProductCatalogue(productName);
 	}
 }

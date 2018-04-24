@@ -20,4 +20,9 @@ public class ProductService {
 	public List<Product> viewAllAvailableProducts() {
 		return productRepository.findAll();
 	}
+
+	public List<Product> viewAllAvailableProductsUnderProductCatalogue(String productName) {
+		// TODO Auto-generated method stub
+		return productRepository.findByProductCatalogueName(productName);
+	}
 }

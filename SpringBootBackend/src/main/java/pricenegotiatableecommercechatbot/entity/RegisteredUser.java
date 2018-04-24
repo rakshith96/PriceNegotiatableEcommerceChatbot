@@ -26,6 +26,8 @@ public class RegisteredUser implements Serializable {
 	private JSONObject interests;
 
 	private String name;
+	
+	private String address;
 
 	private String password;
 
@@ -40,9 +42,17 @@ public class RegisteredUser implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	public RegisteredUser(String contactNumber, String email, String userName, Integer id, JSONObject interests,
-			String name, String password) {
+			String name, String address, String password) {
 		super();
 		this.contactNumber = contactNumber;
 		this.email = email;
@@ -50,9 +60,9 @@ public class RegisteredUser implements Serializable {
 		this.id = id;
 		this.interests = interests;
 		this.name = name;
+		this.address = address;
 		this.password = password;
 	}
-
 
 	public String getContactNumber() {
 		return contactNumber;
