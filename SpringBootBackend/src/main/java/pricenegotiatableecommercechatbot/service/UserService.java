@@ -20,4 +20,8 @@ public class UserService {
 		return userRepository.findByUserName(username);
 	}
 
+	public RegisteredUser getUserByUserId(Integer userId) {
+		return userRepository.findById(userId);
+	}
+	
 }

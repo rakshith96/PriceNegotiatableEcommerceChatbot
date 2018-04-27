@@ -40,4 +40,9 @@ public class OrderHistoryController {
 		return orderHistoryService.findLatestOrder(userId);
 	}
 	
+	@RequestMapping(value="/updateOrder",  method= RequestMethod.GET)
+	public OrderHistory updateOrder(@RequestParam("orderId") Integer orderId) {
+		return orderHistoryService.updateOrderStatus(orderId);
+	}
+	
 }

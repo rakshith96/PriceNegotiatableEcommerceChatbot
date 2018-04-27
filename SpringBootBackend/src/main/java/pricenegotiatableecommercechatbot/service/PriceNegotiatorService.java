@@ -70,10 +70,13 @@ public class PriceNegotiatorService {
 		List<OrderHistory> list = orderHistoryRepository.findByUserId(userId);
 		double totalAmountPurchased = 0.0;
 		for(int i = 0;i<list.size();i++) {
+			if(i>5)
+				break;
 			double price = list.get(i).getFinalPrice();
 //			System.out.println(price);
 			totalAmountPurchased+=price; 
 		}
+		
 		System.out.println("User "+userId+" has made a purchase of total Rs "+totalAmountPurchased+ " in the last 5 latest trasactions");
 		if(totalAmountPurchased<=1000.0) {
 		return 1.0;

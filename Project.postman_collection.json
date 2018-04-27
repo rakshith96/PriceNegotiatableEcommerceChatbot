@@ -1,13 +1,12 @@
 {
 	"info": {
-		"name": "Project",
 		"_postman_id": "08f72d1b-134f-9067-4f67-0374a05ac501",
-		"description": "",
+		"name": "Project",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "localhost:8080/registerNewUser",
+			"name": "localhost:8080/addNewOrder",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -18,16 +17,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"contactNumber\": null,\n    \"email\": \"rrrakshi10@gmail.com\",\n    \"userName\": \"Kruthi\",\n    \"interests\": null,\n    \"name\": \"Kruthi\",\n    \"password\": \"kruthi\"\n}"
+					"raw": "{\n    \"transactionId\":14,\n    \"time\":1,\n    \"finalPrice\":100,\n    \"productIds\":\"4\",\n    \"userId\":1\n}"
 				},
 				"url": {
-					"raw": "localhost:8080/registerNewUser",
+					"raw": "localhost:8080/addNewOrder",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"registerNewUser"
+						"addNewOrder"
 					]
 				},
 				"description": "Post Request to add user"
@@ -49,8 +48,7 @@
 					"path": [
 						"viewAllAvailableCategory"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -77,8 +75,7 @@
 					"path": [
 						"addNewCategory"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -105,8 +102,7 @@
 					"path": [
 						"addNewProductCatalogue"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -133,8 +129,7 @@
 					"path": [
 						"addNewProduct"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -156,12 +151,10 @@
 					"query": [
 						{
 							"key": "username",
-							"value": "Rakshith VR",
-							"equals": true
+							"value": "Rakshith VR"
 						}
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -181,8 +174,7 @@
 					"path": [
 						"viewAllAvailableProductsCatalogue"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -204,8 +196,7 @@
 					"query": [
 						{
 							"key": "categoryName",
-							"value": "Electronics",
-							"equals": true
+							"value": "Electronics"
 						}
 					]
 				},
@@ -231,12 +222,10 @@
 					"query": [
 						{
 							"key": "productName",
-							"value": "1dk",
-							"equals": true
+							"value": "1dk"
 						}
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -263,8 +252,7 @@
 					"path": [
 						"addNewProduct"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -286,12 +274,10 @@
 					"query": [
 						{
 							"key": "productName",
-							"value": "Laptop",
-							"equals": true
+							"value": "Laptop"
 						}
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -307,7 +293,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"productId\":\"69\",\n\t\"userId\":\"1\",\n\t\"time\":1\n}"
+					"raw": "{\n\t\"productId\":\"69\",\n\t\"userId\":\"1\",\n\t\"time\":10\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/addSearchHistroy",
@@ -318,8 +304,68 @@
 					"path": [
 						"addSearchHistroy"
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/addNewOrder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transactionId\":14,\n    \"time\":1,\n    \"finalPrice\":100,\n    \"productIds\":\"4\",\n    \"userId\":1\n}"
 				},
-				"description": ""
+				"url": {
+					"raw": "localhost:8080/addNewOrder",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addNewOrder"
+					]
+				},
+				"description": "Post Request to add Order"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/getPreviousSearchHistroyOfUser?userId=1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"productId\":\"69\",\n\t\"userId\":\"1\",\n\t\"time\":1\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/updateOrder?orderId=14",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"updateOrder"
+					],
+					"query": [
+						{
+							"key": "orderId",
+							"value": "14"
+						}
+					]
+				}
 			},
 			"response": []
 		}

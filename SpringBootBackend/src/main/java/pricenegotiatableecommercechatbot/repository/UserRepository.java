@@ -9,5 +9,7 @@ import pricenegotiatableecommercechatbot.entity.RegisteredUser;
 public interface UserRepository extends JpaRepository<RegisteredUser,Integer>{
 
 	RegisteredUser findByUserName(String username);
+	
+	RegisteredUser findById(Integer userId);
 
 }
